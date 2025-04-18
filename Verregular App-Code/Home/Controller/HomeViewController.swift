@@ -14,6 +14,7 @@ class HomeViewController: UIViewController {
         
         label.text = "Verregular".uppercased()
         label.font = .boldSystemFont(ofSize: 28)
+        label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
     }()
@@ -23,7 +24,7 @@ class HomeViewController: UIViewController {
         
         button.setTitle("Select verbs".localized, for: .normal)
         button.backgroundColor = .gray
-        button.layer.cornerRadius = 20
+        button.layer.cornerRadius = cornerRadius
         button.translatesAutoresizingMaskIntoConstraints = false
         
         return button
@@ -34,12 +35,14 @@ class HomeViewController: UIViewController {
         
         button.setTitle("Train verbs".localized, for: .normal)
         button.backgroundColor = .gray
-        button.layer.cornerRadius = 20
+        button.layer.cornerRadius = cornerRadius
+        button.translatesAutoresizingMaskIntoConstraints = false
         
         return button
     }()
     
     // MARK: - Properties
+    private let cornerRadius: CGFloat = 20
     
     // MARK: - Life cycle
     override func viewDidLoad() {
@@ -53,6 +56,8 @@ class HomeViewController: UIViewController {
         view.addSubview(titleLabel)
         view.addSubview(firstButton)
         view.addSubview(secondButton)
+        
+        view.backgroundColor = .white
         
         setupConstraints()
     }
