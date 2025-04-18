@@ -24,6 +24,7 @@ class HomeViewController: UIViewController {
         button.setTitle("Select verbs".localized, for: .normal)
         button.backgroundColor = .gray
         button.layer.cornerRadius = 20
+        button.translatesAutoresizingMaskIntoConstraints = false
         
         return button
     }()
@@ -43,10 +44,23 @@ class HomeViewController: UIViewController {
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        configureUI()
     }
     
     // MARK: - Private methods
+    private func configureUI() {
+        view.addSubview(titleLabel)
+        view.addSubview(firstButton)
+        view.addSubview(secondButton)
+        
+        setupConstraints()
+    }
+    
+    private func setupConstraints() {
+        firstButton.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        firstButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+    }
 
 
 }
