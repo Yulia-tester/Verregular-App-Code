@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class SelectVerbsViewController: UIViewController {
+final class SelectVerbsViewController: UITableViewController {
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
