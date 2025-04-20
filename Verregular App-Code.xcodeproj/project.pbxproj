@@ -13,6 +13,8 @@
 		B275B2AF2DB017E90023F1F4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B275B2AD2DB017E90023F1F4 /* LaunchScreen.storyboard */; };
 		B275B2B72DB16A330023F1F4 /* String+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B275B2B62DB16A330023F1F4 /* String+Ex.swift */; };
 		B275B2BD2DB2B5010023F1F4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B275B2BF2DB2B5010023F1F4 /* Localizable.strings */; };
+		B275B2C22DB4079F0023F1F4 /* SelectVerbsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B275B2C12DB4079F0023F1F4 /* SelectVerbsViewController.swift */; };
+		B275B2C42DB407F10023F1F4 /* TrainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B275B2C32DB407F10023F1F4 /* TrainViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +27,8 @@
 		B275B2B62DB16A330023F1F4 /* String+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ex.swift"; sourceTree = "<group>"; };
 		B275B2BE2DB2B5010023F1F4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B275B2C02DB2B5280023F1F4 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B275B2C12DB4079F0023F1F4 /* SelectVerbsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectVerbsViewController.swift; sourceTree = "<group>"; };
+		B275B2C32DB407F10023F1F4 /* TrainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,8 +92,26 @@
 			isa = PBXGroup;
 			children = (
 				B275B2B92DB2B42D0023F1F4 /* Controller */,
+				B275B2C52DB4080D0023F1F4 /* Select */,
+				B275B2C62DB408130023F1F4 /* Train */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		B275B2C52DB4080D0023F1F4 /* Select */ = {
+			isa = PBXGroup;
+			children = (
+				B275B2C12DB4079F0023F1F4 /* SelectVerbsViewController.swift */,
+			);
+			path = Select;
+			sourceTree = "<group>";
+		};
+		B275B2C62DB408130023F1F4 /* Train */ = {
+			isa = PBXGroup;
+			children = (
+				B275B2C32DB407F10023F1F4 /* TrainViewController.swift */,
+			);
+			path = Train;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -166,7 +188,9 @@
 			files = (
 				B275B2B72DB16A330023F1F4 /* String+Ex.swift in Sources */,
 				B275B2A72DB017E40023F1F4 /* HomeViewController.swift in Sources */,
+				B275B2C42DB407F10023F1F4 /* TrainViewController.swift in Sources */,
 				B275B2A32DB017E40023F1F4 /* AppDelegate.swift in Sources */,
+				B275B2C22DB4079F0023F1F4 /* SelectVerbsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

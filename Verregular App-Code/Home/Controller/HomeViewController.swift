@@ -27,6 +27,9 @@ class HomeViewController: UIViewController {
         button.backgroundColor = .systemGray5
         button.layer.cornerRadius = cornerRadius
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self,
+                         action: #selector(goToSelectViewController),
+                         for: .touchUpInside)
         
         return button
     }()
@@ -39,6 +42,9 @@ class HomeViewController: UIViewController {
         button.backgroundColor = .systemGray5
         button.layer.cornerRadius = cornerRadius
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self,
+                         action: #selector(goToTrainViewController),
+                         for: .touchUpInside)
         
         return button
     }()
@@ -55,6 +61,18 @@ class HomeViewController: UIViewController {
     }
     
     // MARK: - Private methods
+    @objc
+    private func goToSelectViewController() {
+        navigationController?.pushViewController(SelectVerbsViewController(),
+                                                 animated: true)
+    }
+    
+    @objc
+    private func goToTrainViewController() {
+        navigationController?.pushViewController(TrainViewController(),
+                                                 animated: true)
+    }
+    
     private func configureUI() {
         view.addSubview(titleLabel)
         view.addSubview(firstButton)
