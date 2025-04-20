@@ -15,6 +15,8 @@
 		B275B2BD2DB2B5010023F1F4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B275B2BF2DB2B5010023F1F4 /* Localizable.strings */; };
 		B275B2C22DB4079F0023F1F4 /* SelectVerbsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B275B2C12DB4079F0023F1F4 /* SelectVerbsViewController.swift */; };
 		B275B2C42DB407F10023F1F4 /* TrainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B275B2C32DB407F10023F1F4 /* TrainViewController.swift */; };
+		B275B2C92DB56EDF0023F1F4 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = B275B2C82DB56EDF0023F1F4 /* SnapKit */; };
+		B275B2EB2DB572B30023F1F4 /* SelectVerbTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B275B2EA2DB572B30023F1F4 /* SelectVerbTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +31,7 @@
 		B275B2C02DB2B5280023F1F4 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B275B2C12DB4079F0023F1F4 /* SelectVerbsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectVerbsViewController.swift; sourceTree = "<group>"; };
 		B275B2C32DB407F10023F1F4 /* TrainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainViewController.swift; sourceTree = "<group>"; };
+		B275B2EA2DB572B30023F1F4 /* SelectVerbTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectVerbTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +39,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B275B2C92DB56EDF0023F1F4 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				B275B2C12DB4079F0023F1F4 /* SelectVerbsViewController.swift */,
+				B275B2EA2DB572B30023F1F4 /* SelectVerbTableViewCell.swift */,
 			);
 			path = Select;
 			sourceTree = "<group>";
@@ -130,6 +135,9 @@
 			dependencies = (
 			);
 			name = "Verregular App-Code";
+			packageProductDependencies = (
+				B275B2C82DB56EDF0023F1F4 /* SnapKit */,
+			);
 			productName = "Verregular App-Code";
 			productReference = B275B29F2DB017E40023F1F4 /* Verregular App-Code.app */;
 			productType = "com.apple.product-type.application";
@@ -159,6 +167,9 @@
 				ru,
 			);
 			mainGroup = B275B2962DB017E40023F1F4;
+			packageReferences = (
+				B275B2C72DB56EDF0023F1F4 /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = B275B2A02DB017E40023F1F4 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -186,6 +197,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B275B2EB2DB572B30023F1F4 /* SelectVerbTableViewCell.swift in Sources */,
 				B275B2B72DB16A330023F1F4 /* String+Ex.swift in Sources */,
 				B275B2A72DB017E40023F1F4 /* HomeViewController.swift in Sources */,
 				B275B2C42DB407F10023F1F4 /* TrainViewController.swift in Sources */,
@@ -409,6 +421,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B275B2C72DB56EDF0023F1F4 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B275B2C82DB56EDF0023F1F4 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B275B2C72DB56EDF0023F1F4 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B275B2972DB017E40023F1F4 /* Project object */;
 }
