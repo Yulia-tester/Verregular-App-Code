@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 final class SelectVerbTableViewCell: UITableViewCell {
     
@@ -104,8 +105,27 @@ final class SelectVerbTableViewCell: UITableViewCell {
     }
     
     func setupConstraints() {
+        checkboxImageView.snp.makeConstraints { make in
+            make.width.height.equalTo(20)
+            make.centerY.equalToSuperview()
+            make.leading.equalToSuperview().inset(20)
+        }
         
+        infinitiveLabel.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+        }
+        
+        translationLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(infinitiveLabel.snp.bottom).offset(0)
+        }
+        
+        infinitiveView.snp.makeConstraints { make in
+            make.height.equalTo(69)
+        }
+        
+        stackView.snp.makeConstraints { make in
+            make.top.right.bottom.equalToSuperview()
+        }
     }
-    
-    
 }

@@ -111,8 +111,8 @@
 		B275B2C52DB4080D0023F1F4 /* Select */ = {
 			isa = PBXGroup;
 			children = (
-				B275B2C12DB4079F0023F1F4 /* SelectVerbsViewController.swift */,
-				B275B2EA2DB572B30023F1F4 /* SelectVerbTableViewCell.swift */,
+				B275B2F12DB6D21F0023F1F4 /* Controller */,
+				B275B2F02DB6D2110023F1F4 /* View */,
 			);
 			path = Select;
 			sourceTree = "<group>";
@@ -123,6 +123,22 @@
 				B275B2C32DB407F10023F1F4 /* TrainViewController.swift */,
 			);
 			path = Train;
+			sourceTree = "<group>";
+		};
+		B275B2F02DB6D2110023F1F4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B275B2EA2DB572B30023F1F4 /* SelectVerbTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B275B2F12DB6D21F0023F1F4 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B275B2C12DB4079F0023F1F4 /* SelectVerbsViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
