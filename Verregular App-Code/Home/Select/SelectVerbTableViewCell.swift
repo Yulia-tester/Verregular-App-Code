@@ -17,7 +17,7 @@ final class SelectVerbTableViewCell: UITableViewCell {
             case .select:
                 return UIImage.checkmark
             case .unselect:
-                return UIImage(systemName: "circlebadge")
+                return UIImage(systemName: "circlebadge") ?? UIImage.add
             }
         }
     }
@@ -31,4 +31,81 @@ final class SelectVerbTableViewCell: UITableViewCell {
         
         return view
     }()
+    
+    private lazy var stackView: UIStackView = {
+        let view = UIStackView()
+        
+        // axis says the stack will be horizontal or vertical
+        view.axis = .horizontal
+        // distribution says how the elements in the stack will be aligned
+        view.distribution = .fillEqually
+        // alignment is about vertical alignment in the stack
+        view.alignment = .center
+        // spacing is the distance between the elements of the stack
+        view.spacing = 5
+        
+        return view
+    }()
+    
+    private lazy var infinitiveView: UIView = UIView()
+    
+    private lazy var infinitiveLabel: UILabel = {
+        let label = UILabel()
+        
+        label.font = .boldSystemFont(ofSize: 16)
+        
+        return label
+    }()
+    
+    private lazy var translationLabel: UILabel = {
+        let label = UILabel()
+        
+        label.font = .systemFont(ofSize: 12)
+        label.textColor = .gray
+        
+        return label
+    }()
+    
+    private lazy var pastLabel: UILabel = {
+        let label = UILabel()
+        
+        label.font = .systemFont(ofSize: 16)
+        
+        return label
+    }()
+    
+    private lazy var participleLabel: UILabel = {
+        let label = UILabel()
+        
+        label.font = .systemFont(ofSize: 16)
+        
+        return label
+    }()
+    
+    // MARK: - Initialiazation
+    override init(style: UITableViewCell.CellStyle,
+                  reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        setupUI()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Private methods
+    func setupUI() {
+        infinitiveView.addSubviews([infinitiveLabel, translationLabel])
+        stackView.addArrangedSubviews([infinitiveView, pastLabel, participleLabel])
+        addSubviews([checkboxImageView, stackView])
+        
+        setupConstraints()
+    }
+    
+    func setupConstraints() {
+        
+    }
+    
+    
 }
