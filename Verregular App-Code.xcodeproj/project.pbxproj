@@ -17,6 +17,8 @@
 		B275B2C42DB407F10023F1F4 /* TrainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B275B2C32DB407F10023F1F4 /* TrainViewController.swift */; };
 		B275B2C92DB56EDF0023F1F4 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = B275B2C82DB56EDF0023F1F4 /* SnapKit */; };
 		B275B2EB2DB572B30023F1F4 /* SelectVerbTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B275B2EA2DB572B30023F1F4 /* SelectVerbTableViewCell.swift */; };
+		B275B2ED2DB6C98F0023F1F4 /* UIView+EX.swift in Sources */ = {isa = PBXBuildFile; fileRef = B275B2EC2DB6C98F0023F1F4 /* UIView+EX.swift */; };
+		B275B2EF2DB6CAFC0023F1F4 /* UIStackView+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B275B2EE2DB6CAFC0023F1F4 /* UIStackView+Ex.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		B275B2C12DB4079F0023F1F4 /* SelectVerbsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectVerbsViewController.swift; sourceTree = "<group>"; };
 		B275B2C32DB407F10023F1F4 /* TrainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainViewController.swift; sourceTree = "<group>"; };
 		B275B2EA2DB572B30023F1F4 /* SelectVerbTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectVerbTableViewCell.swift; sourceTree = "<group>"; };
+		B275B2EC2DB6C98F0023F1F4 /* UIView+EX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+EX.swift"; sourceTree = "<group>"; };
+		B275B2EE2DB6CAFC0023F1F4 /* UIStackView+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Ex.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +84,8 @@
 			isa = PBXGroup;
 			children = (
 				B275B2B62DB16A330023F1F4 /* String+Ex.swift */,
+				B275B2EC2DB6C98F0023F1F4 /* UIView+EX.swift */,
+				B275B2EE2DB6CAFC0023F1F4 /* UIStackView+Ex.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -199,9 +205,11 @@
 			files = (
 				B275B2EB2DB572B30023F1F4 /* SelectVerbTableViewCell.swift in Sources */,
 				B275B2B72DB16A330023F1F4 /* String+Ex.swift in Sources */,
+				B275B2ED2DB6C98F0023F1F4 /* UIView+EX.swift in Sources */,
 				B275B2A72DB017E40023F1F4 /* HomeViewController.swift in Sources */,
 				B275B2C42DB407F10023F1F4 /* TrainViewController.swift in Sources */,
 				B275B2A32DB017E40023F1F4 /* AppDelegate.swift in Sources */,
+				B275B2EF2DB6CAFC0023F1F4 /* UIStackView+Ex.swift in Sources */,
 				B275B2C22DB4079F0023F1F4 /* SelectVerbsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
