@@ -16,11 +16,19 @@ final class SelectVerbsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        title = "Select verbs".localized
         view.backgroundColor = .white
         tableView.register(SelectVerbTableViewCell.self,
                            forCellReuseIdentifier: "SelectVerbTableViewCell")
         dataSource.configureVerbs()
     }
+    
+    // MARK: - Private methods
+    private func isSelected(verb: Verb) -> Bool {
+        dataSource.selectedVerbs.contains(where: { $0.infinitive == verb.infinitive
+        })
+    }
+    
 }
 
 // MARK: - UITableViewDataSource
@@ -36,7 +44,9 @@ extension SelectVerbsViewController {
                                                  for: indexPath) as? SelectVerbTableViewCell else {
             return UITableViewCell() }
         
-        cell.configure(with: dataSource.verbs[indexPath.row])
+        let verb = dataSource.verbs[indexPath.row]
+        cell.configure(with: verb,
+                       isSelected: isSelected(verb: verb))
         
         return cell
     }
@@ -44,5 +54,16 @@ extension SelectVerbsViewController {
 
 // MARK: - UITableViewDelegate
 extension SelectVerbsViewController {
-    
+    override func tableView(_ tableView: UITableView,
+                            didSelectRowAt indexPath: IndexPath) {
+        let verb = dataSource.verbs[indexPath.row]
+        
+        if isSelected(verb: verb) {
+            dataSource.selectedVerbs.removeAll(where: { $0.infinitive == verb.infinitive })
+        } else {
+            dataSource.selectedVerbs.append(verb)
+        }
+        // update the picture in the cells
+        tableView.reloadRows(at: [indexPath], with: .automatic)
+    }
 }
