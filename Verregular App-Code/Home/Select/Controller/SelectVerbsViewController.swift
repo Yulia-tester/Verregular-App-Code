@@ -9,6 +9,9 @@ import UIKit
 
 final class SelectVerbsViewController: UITableViewController {
     
+    // MARK: - Properties
+    private var dataSource = IrregularVerbs()
+    
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,6 +19,7 @@ final class SelectVerbsViewController: UITableViewController {
         view.backgroundColor = .white
         tableView.register(SelectVerbTableViewCell.self,
                            forCellReuseIdentifier: "SelectVerbTableViewCell")
+        dataSource.configureVerbs()
     }
 }
 
@@ -23,7 +27,7 @@ final class SelectVerbsViewController: UITableViewController {
 extension SelectVerbsViewController {
     override func tableView(_ tableView: UITableView,
                             numberOfRowsInSection section: Int) -> Int {
-        1
+        dataSource.verbs.count
     }
     
     override func tableView(_ tableView: UITableView,
@@ -31,6 +35,8 @@ extension SelectVerbsViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "SelectVerbTableViewCell",
                                                  for: indexPath) as? SelectVerbTableViewCell else {
             return UITableViewCell() }
+        
+        cell.configure(with: dataSource.verbs[indexPath.row])
         
         return cell
     }

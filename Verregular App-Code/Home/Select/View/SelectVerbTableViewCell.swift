@@ -71,6 +71,7 @@ final class SelectVerbTableViewCell: UITableViewCell {
         let label = UILabel()
         
         label.font = .systemFont(ofSize: 16)
+        label.textAlignment = .center
         
         return label
     }()
@@ -79,6 +80,7 @@ final class SelectVerbTableViewCell: UITableViewCell {
         let label = UILabel()
         
         label.font = .systemFont(ofSize: 16)
+        label.textAlignment = .center
         
         return label
     }()
@@ -93,6 +95,14 @@ final class SelectVerbTableViewCell: UITableViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Methods
+    func configure(with verb: Verb) {
+        infinitiveLabel.text = verb.infinitive
+        translationLabel.text = verb.translation
+        pastLabel.text = verb.pastSimple
+        participleLabel.text = verb.participle
     }
     
     // MARK: - Private methods
