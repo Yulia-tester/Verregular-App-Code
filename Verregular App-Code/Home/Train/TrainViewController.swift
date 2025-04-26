@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 final class TrainViewController: UIViewController {
     private lazy var scrollView: UIScrollView = {
@@ -24,6 +25,7 @@ final class TrainViewController: UIViewController {
         label.font = .boldSystemFont(ofSize: 28)
         label.textColor = .black
         label.textAlignment = .center
+        label.text = "Read".uppercased()
         
         return label
     }()
@@ -57,7 +59,7 @@ final class TrainViewController: UIViewController {
         return field
     }()
     
-    private lazy var pastParticipleTextField: UITextField = {
+    private lazy var participleTextField: UITextField = {
         let field = UITextField()
         
         field.borderStyle = .roundedRect
@@ -77,13 +79,77 @@ final class TrainViewController: UIViewController {
         return button
     }()
     
+    // MARK: - Properties
+    private let edgeInsets = 30
+    
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         title = "Train verbs".localized
-        view.backgroundColor = .yellow
+        
+        setupUI()
     }
+    
+    // MARK: - Private methods
+    private func setupUI() {
+        view.backgroundColor = .white
+        
+        view.addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        contentView.addSubviews([
+        infinitiveLabel,
+        pastSimpleLabel,
+        pastSimpleTextField,
+        participleLabel,
+        participleTextField,
+        checkButton])
+        
+      setupConstraints()
+    }
+    
+    private func setupConstraints() {
+        scrollView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
+        contentView.snp.makeConstraints { make in
+            make.size.edges.equalToSuperview()
+        }
+        
+        infinitiveLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(200)
+            make.trailing.leading.equalToSuperview().inset(edgeInsets)
+        }
+        
+        pastSimpleLabel.snp.makeConstraints { make in
+            make.top.equalTo(infinitiveLabel.snp.bottom).offset(60)
+            make.trailing.leading.equalToSuperview().inset(edgeInsets)
+        }
+        
+        pastSimpleTextField.snp.makeConstraints { make in
+            make.top.equalTo(pastSimpleLabel.snp.bottom).offset(10)
+            make.trailing.leading.equalToSuperview().inset(edgeInsets)
+        }
+        
+        participleLabel.snp.makeConstraints { make in
+            make.top.equalTo(pastSimpleTextField.snp.bottom).offset(20)
+            make.trailing.leading.equalToSuperview().inset(edgeInsets)
+        }
+        
+        participleTextField.snp.makeConstraints { make in
+            make.top.equalTo(participleLabel.snp.bottom).offset(10)
+            make.trailing.leading.equalToSuperview().inset(edgeInsets)
+        }
+        
+        checkButton.snp.makeConstraints { make in
+            make.top.equalTo(participleTextField.snp.bottom).offset(100)
+            make.trailing.leading.equalToSuperview().inset(edgeInsets)
+        }
+        
+        
+    }
+    
 }
 
 // MARK: - UITextFieldDelegate
