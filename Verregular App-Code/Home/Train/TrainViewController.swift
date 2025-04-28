@@ -25,7 +25,6 @@ final class TrainViewController: UIViewController {
         label.font = .boldSystemFont(ofSize: 28)
         label.textColor = .black
         label.textAlignment = .center
-        label.text = "Read".uppercased()
         
         return label
     }()
@@ -75,12 +74,28 @@ final class TrainViewController: UIViewController {
         button.backgroundColor = .systemGray5
         button.setTitle("Check".localized, for: .normal)
         button.setTitleColor(UIColor.black, for: .normal)
+        button.addTarget(self,
+                         action: #selector(checkAction),
+                         for: .touchUpInside)
         
         return button
     }()
     
     // MARK: - Properties
     private let edgeInsets = 30
+    private let dataSource = IrregularVerbs.shared.selectedVerbs
+    private var currentVerb: Verb? {
+        guard dataSource.count > count else { return nil }
+        return dataSource[count]
+    }
+    
+    private var count = 0 {
+        didSet {
+            infinitiveLabel.text = currentVerb?.infinitive
+            pastSimpleTextField.text = ""
+            participleTextField.text = ""
+        }
+    }
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -91,9 +106,26 @@ final class TrainViewController: UIViewController {
         registerForKeyboardNotification()
         unregisterForKeyboardNotification()
         hideKeyboardWhenTappedAround()
+        
+        infinitiveLabel.text = dataSource.first?.infinitive
     }
     
     // MARK: - Private methods
+    @objc
+    private func checkAction() {
+        if checkAnswers() {
+            count += 1
+        } else {
+            checkButton.backgroundColor = .red
+            checkButton.setTitle("Try again".localized,
+                                 for: .normal)
+        }
+    }
+    
+    private func checkAnswers() -> Bool {
+        return true
+    }
+    
     private func setupUI() {
         view.backgroundColor = .white
         
@@ -156,7 +188,14 @@ final class TrainViewController: UIViewController {
 
 // MARK: - UITextFieldDelegate
 extension TrainViewController: UITextFieldDelegate {
-    // TODO:
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if pastSimpleTextField.isFirstResponder {
+            participleTextField.becomeFirstResponder()
+        } else {
+            scrollView.endEditing(true)
+        }
+        return true
+    }
 }
 
 
