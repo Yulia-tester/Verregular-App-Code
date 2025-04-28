@@ -87,8 +87,9 @@ final class TrainViewController: UIViewController {
         super.viewDidLoad()
         
         title = "Train verbs".localized
-        
         setupUI()
+        registerForKeyboardNotification()
+        unregisterForKeyboardNotification()
     }
     
     // MARK: - Private methods
@@ -157,6 +158,36 @@ extension TrainViewController: UITextFieldDelegate {
     // TODO:
 }
 
+
+// MARK: - Keyboard events
+// we do not subscribe to any delegate here because we simply separate the code about raising and hiding the keyboard from the main class
+private extension TrainViewController {
+    func registerForKeyboardNotification() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillShow(_:)),
+                                               name: UIResponder.keyboardWillShowNotification,
+                                               object: nil)
+    }
+    
+    func unregisterForKeyboardNotification() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillHide),
+                                               name: UIResponder.keyboardWillHideNotification,
+                                               object: nil)
+    }
+    
+    @objc
+    func keyboardWillShow(_ notification: Notification) {
+        guard let frame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else { return }
+        
+        scrollView.contentInset.bottom = frame.height + 50
+    }
+    
+    @objc
+    func keyboardWillHide() {
+        scrollView.contentInset.bottom = .zero - 50
+    }
+}
 
 
 
