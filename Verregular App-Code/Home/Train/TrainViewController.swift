@@ -123,7 +123,10 @@ final class TrainViewController: UIViewController {
     }
     
     private func checkAnswers() -> Bool {
-        return true
+        pastSimpleTextField.text?.lowercased() ==
+            currentVerb?.pastSimple.lowercased() &&
+        participleTextField.text?.lowercased() ==
+        currentVerb?.participle.lowercased()
     }
     
     private func setupUI() {
