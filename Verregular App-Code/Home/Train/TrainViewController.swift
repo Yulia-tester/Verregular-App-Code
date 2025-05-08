@@ -20,12 +20,23 @@ final class TrainViewController: UIViewController {
     private lazy var contentView: UIView = UIView()
     
     // Home work - UILabel, который отображает номер текущего глагола из какого количества, напр.: "2/10" или "2 из 10"
-    private lazy var progressLabel: UILabel = {
+    private lazy var currentVerbNumberLabel: UILabel = {
         let label = UILabel()
         
         label.font = .systemFont(ofSize: 18)
         label.textColor = .gray
         label.text = "\(count)/\(dataSource.count)"
+        
+        return label
+        
+    }()
+    // Home work - UILabel, показывает Score
+    private lazy var scoreLabel: UILabel = {
+        let label = UILabel()
+        
+        label.font = .systemFont(ofSize: 18)
+        label.textColor = .gray
+        label.text = "Score: \(count)"
         
         return label
         
@@ -106,6 +117,7 @@ final class TrainViewController: UIViewController {
             infinitiveLabel.text = currentVerb?.infinitive
             pastSimpleTextField.text = ""
             participleTextField.text = ""
+            currentVerbNumberLabel.text = "\(count + 1)/\(dataSource.count)"
         }
     }
     
@@ -124,6 +136,7 @@ final class TrainViewController: UIViewController {
         hideKeyboardWhenTappedAround()
         
         infinitiveLabel.text = dataSource.first?.infinitive
+        currentVerbNumberLabel.text = "1/\(dataSource.count)"
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -146,7 +159,7 @@ final class TrainViewController: UIViewController {
             if canReceivePoint {
                 correctPointsCount += 1
             }
-            progressLabel.text = "\(correctPointsCount)/\(dataSource.count)"
+            scoreLabel.text = "Score: \(correctPointsCount)"
             count += 1
             canReceivePoint = true // для следующего слова сбрасываем возможность получить балл
             checkButton.backgroundColor = .systemGray5
@@ -171,7 +184,8 @@ final class TrainViewController: UIViewController {
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
         contentView.addSubviews([
-        progressLabel,
+        currentVerbNumberLabel,
+        scoreLabel,
         infinitiveLabel,
         pastSimpleLabel,
         pastSimpleTextField,
@@ -191,13 +205,18 @@ final class TrainViewController: UIViewController {
             make.size.edges.equalToSuperview()
         }
         
-        progressLabel.snp.makeConstraints { make in
+        currentVerbNumberLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(20)
+            make.leading.equalToSuperview().inset(edgeInsets)
+        }
+        
+        scoreLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(20)
             make.trailing.equalToSuperview().inset(edgeInsets)
         }
         
         infinitiveLabel.snp.makeConstraints { make in
-            make.top.equalTo(progressLabel.snp.bottom).offset(60)
+            make.top.equalTo(scoreLabel.snp.bottom).offset(60)
             make.trailing.leading.equalToSuperview().inset(edgeInsets)
         }
         
