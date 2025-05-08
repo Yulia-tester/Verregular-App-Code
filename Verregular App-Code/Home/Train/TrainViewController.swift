@@ -19,6 +19,18 @@ final class TrainViewController: UIViewController {
     
     private lazy var contentView: UIView = UIView()
     
+    // Home work - UILabel, который отображает номер текущего глагола из какого количества, напр.: "2/10" или "2 из 10"
+    private lazy var progressLabel: UILabel = {
+        let label = UILabel()
+        
+        label.font = .systemFont(ofSize: 18)
+        label.textColor = .gray
+        label.text = "\(count)/\(dataSource.count)"
+        
+        return label
+        
+    }()
+    
     private lazy var infinitiveLabel: UILabel = {
         let label = UILabel()
         
@@ -97,6 +109,12 @@ final class TrainViewController: UIViewController {
         }
     }
     
+    // Home work - 1. свойство, которое будет считать очки пользователя. При каждом правильном ответе + 1 балл
+    private var correctPointsCount = 0
+    
+    // Home work - 1. свойство, отвечающее можно ли начислять балл за вопрос
+    private var canReceivePoint = true
+    
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -123,12 +141,20 @@ final class TrainViewController: UIViewController {
     // MARK: - Private methods
     @objc
     private func checkAction() {
+        // Home work - 1. свойство, которое будет считать очки пользователя. При каждом правильном ответе + 1 балл
         if checkAnswers() {
+            if canReceivePoint {
+                correctPointsCount += 1
+            }
+            progressLabel.text = "\(correctPointsCount)/\(dataSource.count)"
             count += 1
+            canReceivePoint = true // для следующего слова сбрасываем возможность получить балл
+            checkButton.backgroundColor = .systemGray5
+            checkButton.setTitle("Check".localized, for: .normal)
         } else {
             checkButton.backgroundColor = .red
-            checkButton.setTitle("Try again".localized,
-                                 for: .normal)
+            checkButton.setTitle("Try again".localized, for: .normal)
+            canReceivePoint = false // после первой ошибки больше балл получить нельзя
         }
     }
     
@@ -145,6 +171,7 @@ final class TrainViewController: UIViewController {
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
         contentView.addSubviews([
+        progressLabel,
         infinitiveLabel,
         pastSimpleLabel,
         pastSimpleTextField,
@@ -164,8 +191,13 @@ final class TrainViewController: UIViewController {
             make.size.edges.equalToSuperview()
         }
         
+        progressLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(20)
+            make.trailing.equalToSuperview().inset(edgeInsets)
+        }
+        
         infinitiveLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(200)
+            make.top.equalTo(progressLabel.snp.bottom).offset(60)
             make.trailing.leading.equalToSuperview().inset(edgeInsets)
         }
         
