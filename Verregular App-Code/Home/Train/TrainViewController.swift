@@ -19,7 +19,7 @@ final class TrainViewController: UIViewController {
     
     private lazy var contentView: UIView = UIView()
     
-    // Home work - UILabel, который отображает номер текущего глагола из какого количества, напр.: "2/10" или "2 из 10"
+    // Home work 2.8 - UILabel, который отображает номер текущего глагола из какого количества, напр.: "2/10" или "2 из 10"
     private lazy var currentVerbNumberLabel: UILabel = {
         let label = UILabel()
         
@@ -30,7 +30,7 @@ final class TrainViewController: UIViewController {
         return label
         
     }()
-    // Home work - UILabel, показывает Score
+    // Home work 2.8 - UILabel, показывает Score
     private lazy var scoreLabel: UILabel = {
         let label = UILabel()
         
@@ -158,12 +158,21 @@ final class TrainViewController: UIViewController {
         if checkAnswers() {
             if canReceivePoint {
                 correctPointsCount += 1
+            } else {
+                checkButton.backgroundColor = .systemGray5
+                checkButton.setTitle("Check".localized, for: .normal)
+                correctPointsCount += 0
             }
+            
             scoreLabel.text = "Score: \(correctPointsCount)"
             count += 1
             canReceivePoint = true // для следующего слова сбрасываем возможность получить балл
-            checkButton.backgroundColor = .systemGray5
-            checkButton.setTitle("Check".localized, for: .normal)
+            
+            // Проверка если последний глагол, показать алерт со скором
+            if count >= dataSource.count {
+                showResultsAlert()
+            }
+            
         } else {
             checkButton.backgroundColor = .red
             checkButton.setTitle("Try again".localized, for: .normal)
@@ -176,6 +185,19 @@ final class TrainViewController: UIViewController {
             currentVerb?.pastSimple.lowercased() &&
         participleTextField.text?.lowercased() ==
         currentVerb?.participle.lowercased()
+    }
+    
+    // Home Work 2.8 - добавить метод, который будет показывать UIAlertController с очками пользователя, если это был последний глагол из выбранных для изучения. У UIAlertController должна быть одна кнопка OK, по нажатию на которую возвращаемся на первый экран.
+    private func showResultsAlert() {
+        let alert = UIAlertController(title: "The training is over",
+                                      message: "Yours score: \(correctPointsCount)/\(dataSource.count)", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK",
+                                     style: .default) { _ in
+            self.navigationController?.popViewController(animated: true)
+        }
+        
+        alert.addAction(okAction)
+        present(alert, animated: true)
     }
     
     private func setupUI() {
