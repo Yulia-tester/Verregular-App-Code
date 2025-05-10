@@ -89,20 +89,9 @@ final class TrainViewController: UIViewController {
         
         return field
     }()
-    
-    private lazy var checkButton: UIButton = {
-        let button = UIButton()
-        
-        button.layer.cornerRadius = 10
-        button.backgroundColor = .systemGray5
-        button.setTitle("Check".localized, for: .normal)
-        button.setTitleColor(UIColor.black, for: .normal)
-        button.addTarget(self,
-                         action: #selector(checkAction),
-                         for: .touchUpInside)
-        
-        return button
-    }()
+
+    private lazy var checkButton = makeActionButton(withTitle: "Check".localized, action: #selector(checkAction))
+    private lazy var skipButton = makeActionButton(withTitle: "Skip".localized, action: #selector(skipAction))
     
     // MARK: - Properties
     private let edgeInsets = 30
@@ -152,6 +141,20 @@ final class TrainViewController: UIViewController {
     }
     
     // MARK: - Private methods
+    
+    /// Home work 2.8: Здесь объединяем одинаковый UI для кнопок skip и check
+    @objc
+    private func makeActionButton(withTitle title: String, action: Selector) -> UIButton {
+        let button = UIButton()
+        button.layer.cornerRadius = 10
+        button.backgroundColor = .systemGray5
+        button.setTitle(title, for: .normal)
+        button.setTitleColor(UIColor.black, for: .normal)
+        button.addTarget(self, action: action, for: .touchUpInside)
+        return button
+    }
+    
+    
     @objc
     private func checkAction() {
         // Home work - 1. свойство, которое будет считать очки пользователя. При каждом правильном ответе + 1 балл
@@ -180,12 +183,14 @@ final class TrainViewController: UIViewController {
         }
     }
     
+    
     private func checkAnswers() -> Bool {
         pastSimpleTextField.text?.lowercased() ==
             currentVerb?.pastSimple.lowercased() &&
         participleTextField.text?.lowercased() ==
         currentVerb?.participle.lowercased()
     }
+    
     
     // Home Work 2.8 - добавить метод, который будет показывать UIAlertController с очками пользователя, если это был последний глагол из выбранных для изучения. У UIAlertController должна быть одна кнопка OK, по нажатию на которую возвращаемся на первый экран.
     private func showResultsAlert() {
@@ -198,6 +203,33 @@ final class TrainViewController: UIViewController {
         
         alert.addAction(okAction)
         present(alert, animated: true)
+    }
+    
+    
+    @objc
+    private func skipAction() {
+        count += 1
+        
+        // если дошли до конца — показываем алерт
+        if count >= dataSource.count {
+            showResultsAlert()
+            return
+        }
+        
+        // сбрасываем тексты
+        infinitiveLabel.text = currentVerb?.infinitive
+        pastSimpleTextField.text = ""
+        participleTextField.text = ""
+        
+        // обновляем счетчики на экране
+        currentVerbNumberLabel.text = "\(count + 1)/\(dataSource.count)"
+        
+        // возвращаем кнопку Check в обычное состояние
+        checkButton.backgroundColor = .systemGray5
+        checkButton.setTitle("Check".localized, for: .normal)
+        
+        // можно разрешить получать балл на следующем слове
+        canReceivePoint = true
     }
     
     private func setupUI() {
@@ -213,7 +245,8 @@ final class TrainViewController: UIViewController {
         pastSimpleTextField,
         participleLabel,
         participleTextField,
-        checkButton])
+        checkButton,
+        skipButton])
         
       setupConstraints()
     }
@@ -264,10 +297,17 @@ final class TrainViewController: UIViewController {
         
         checkButton.snp.makeConstraints { make in
             make.top.equalTo(participleTextField.snp.bottom).offset(100)
-            make.trailing.leading.equalToSuperview().inset(edgeInsets)
+            make.leading.equalToSuperview().inset(edgeInsets)
+            make.trailing.equalTo(skipButton.snp.leading).offset(-10)
+            make.height.equalTo(50)
+            make.width.equalTo(skipButton)
         }
-        
-        
+
+        skipButton.snp.makeConstraints { make in
+            make.top.equalTo(checkButton)
+            make.trailing.equalToSuperview().inset(edgeInsets)
+            make.height.equalTo(checkButton)
+        }
     }
     
 }
