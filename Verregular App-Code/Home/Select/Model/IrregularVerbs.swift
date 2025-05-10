@@ -39,5 +39,8 @@ final class IrregularVerbs {
             Verb(infinitive: "break", pastSimple: "broke", participle: "broken"),
             Verb(infinitive: "cut", pastSimple: "cut", participle: "cut")
         ]
+        
+        // Добавляем все глаголы в выбранные
+            selectedVerbs = verbs
     }
 }
